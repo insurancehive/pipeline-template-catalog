@@ -33,8 +33,9 @@ pipeline {
     stage('Debug') {
       agent any
       steps {
-          sh "echo env"
-          sh "env"
+        sh "echo ${GIT_COMMIT}"
+        sh "echo ${CHANGE_ID}"
+        sh "echo ${BRANCH_NAME}"
       }
     }
     stage('Build and Push Image') {
