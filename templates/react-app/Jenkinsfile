@@ -31,9 +31,12 @@ pipeline {
       } 
     }
     stage('Debug') {
+      environment {
+       commitId = sh(returnStdout: true, script: 'git rev-parse HEAD') 
+      }
       agent any
       steps {
-        sh 'env | sort'
+        sh "echo ${commitId}"
       }
     }
     stage('Build and Push Image') {
