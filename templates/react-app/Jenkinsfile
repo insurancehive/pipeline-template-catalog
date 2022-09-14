@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Build and Push Image') {
       steps { 
-        kanikoBuildPushGeneric("${repository}", "${GIT_COMMIT}", "${gcpProject}/${repoOwner}")
+        kanikoBuildPushGeneric("${repository}", "${env.GIT_COMMIT}", "${gcpProject}/${repoOwner}")
         {
           checkout scm
         }
