@@ -39,7 +39,7 @@ pipeline {
         }
       }
       steps { 
-        kanikoBuildPushGeneric("${repository}", "latest", "${gcpProject}/${repoOwner}")
+        kanikoBuildPushGeneric("${repository}", "${{env.commit.sha}}", "${gcpProject}/${repoOwner}")
         {
           checkout scm
         }
