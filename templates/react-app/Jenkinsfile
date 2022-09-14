@@ -30,18 +30,9 @@ pipeline {
             }
       } 
     }
-    stage('Debug') {
-      environment {
-       commitId = sh(returnStdout: true, script: 'git rev-parse HEAD') 
-      }
-      agent any
-      steps {
-        sh "echo ${commitId}"
-      }
-    }
     stage('Build and Push Image') {
       steps { 
-        kanikoBuildPushGeneric("${repository}", "${env.GIT_COMMIT}", "${gcpProject}/${repoOwner}")
+        kanikoBuildPushGeneric("${repository}", "latest", "${gcpProject}/${repoOwner}")
         {
           checkout scm
         }
